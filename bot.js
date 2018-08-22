@@ -208,7 +208,7 @@ function play(guild, song) {
 }
 
 const adminprefix = "!";
-const devs = ['274923685985386496'];
+const devs = ['404610434063269908'];
 client.on('message', message => {
   var argresult = message.content.split(` `).slice(1).join(' ');
     if (!devs.includes(message.author.id)) return;
@@ -253,4 +253,4 @@ ${prefix}queue ⇏ لمعرفة قآئمة التشغيل
    }
    }); 
    
-	client.login("BOT_TOKEN");
+client.login("BOT_TOKEN");
