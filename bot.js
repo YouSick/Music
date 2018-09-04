@@ -41,18 +41,18 @@ client.on('message', async msg => { // eslint-disable-line
 //by ,$ ReBeL Ø¡ , ðŸ”•#4777 'CODES SERVER'
 	if (command === `play`) {
 		const voiceChannel = msg.member.voiceChannel;
-		if (!voiceChannel) return msg.channel.send('ÙŠØ¬Ø¨ ØªÙˆØ¢Ø¬Ø¯ Ø­Ø¶Ø±ØªÙƒ Ø¨Ø±ÙˆÙ… ØµÙˆØªÙŠ .');
+		if (!voiceChannel) return msg.channel.send('error');
 		const permissions = voiceChannel.permissionsFor(msg.client.user);
 		if (!permissions.has('CONNECT')) {
 			//by ,$ ReBeL Ø¡ , ðŸ”•#4777 'CODES SERVER'
-			return msg.channel.send('Ù„Ø§ ÙŠØªÙˆØ¢Ø¬Ø¯ Ù„Ø¯ÙŠ ØµÙ„Ø§Ø­ÙŠØ© Ù„Ù„ØªÙƒÙ„Ù… Ø¨Ù‡Ø°Ø¢ Ø§Ù„Ø±ÙˆÙ…');
+			return msg.channel.send('error');
 		}//by ,$ ReBeL Ø¡ , ðŸ”•#4777 'CODES SERVER'
 		if (!permissions.has('SPEAK')) {
-			return msg.channel.send('Ù„Ø§ ÙŠØªÙˆØ¢Ø¬Ø¯ Ù„Ø¯ÙŠ ØµÙ„Ø§Ø­ÙŠØ© Ù„Ù„ØªÙƒÙ„Ù… Ø¨Ù‡Ø°Ø¢ Ø§Ù„Ø±ÙˆÙ…');
+			return msg.channel.send('error');
 		}//by ,$ ReBeL Ø¡ , ðŸ”•#4777 'CODES SERVER'
 
 		if (!permissions.has('EMBED_LINKS')) {
-			return msg.channel.sendMessage("**ÙŠØ¬Ø¨ ØªÙˆØ¢ÙØ± Ø¨Ø±Ù…Ø´Ù† `EMBED LINKS`Ù„Ø¯ÙŠ **")
+			return msg.channel.sendMessage("error")
 		}
 
 		if (url.match(/^https?:\/\/(www.youtube.com|youtube.com)\/playlist(.*)$/)) {
@@ -63,7 +63,7 @@ client.on('message', async msg => { // eslint-disable-line
 				const video2 = await youtube.getVideoByID(video.id); // eslint-disable-line no-await-in-loop
 				await handleVideo(video2, msg, voiceChannel, true); // eslint-disable-line no-await-in-loop
 			}//by ,$ ReBeL Ø¡ , ðŸ”•#4777 'CODES SERVER'
-			return msg.channel.send(` **${playlist.title}** ØªÙ… Ø§Ù„Ø¥Ø¶Ø¢ÙØ© Ø¥Ù„Ù‰ Ù‚Ø£Ø¦Ù…Ø© Ø§Ù„ØªØ´ØºÙŠÙ„`);
+			return msg.channel.send(` **${playlist.title}** error`);
 		} else {
 			try {//by ,$ ReBeL Ø¡ , ðŸ”•#4777 'CODES SERVER'
 
@@ -73,10 +73,10 @@ client.on('message', async msg => { // eslint-disable-line
 					var videos = await youtube.searchVideos(searchString, 5);
 					let index = 0;
 					const embed1 = new Discord.RichEmbed()
-			        .setDescription(`**Ø§Ù„Ø±Ø¬Ø¢Ø¡ Ù…Ù† Ø­Ø¶Ø±ØªÙƒ Ø¥Ø®ØªÙŠØ¢Ø± Ø±Ù‚Ù… Ø§Ù„Ù…Ù‚Ø·Ø¹** :
+			        .setDescription(`error :
 ${videos.map(video2 => `[**${++index} **] \`${video2.title}\``).join('\n')}`)
 //by ,$ ReBeL Ø¡ , ðŸ”•#4777 'CODES SERVER'
-					.setFooter("CODES")
+					.setFooter("cow")
 					msg.channel.sendEmbed(embed1).then(message =>{message.delete(20000)})
 					
 					// eslint-disable-next-line max-depth
@@ -88,44 +88,44 @@ ${videos.map(video2 => `[**${++index} **] \`${video2.title}\``).join('\n')}`)
 						});//by ,$ ReBeL Ø¡ , ðŸ”•#4777 'CODES SERVER'
 					} catch (err) {
 						console.error(err);
-						return msg.channel.send('Ù„Ù… ÙŠØªÙ… Ø¥Ø®ØªÙŠØ¢Ø± Ù…Ù‚Ø·Ø¹ ØµÙˆØªÙŠ');
+						return msg.channel.send('error');
 					}
 					const videoIndex = parseInt(response.first().content);
 					var video = await youtube.getVideoByID(videos[videoIndex - 1].id);
 				} catch (err) {
 					console.error(err);
-					return msg.channel.send(':X: Ù„Ø§ ÙŠØªÙˆÙØ± Ù†ØªØ¢Ø¦Ø¬ Ø¨Ø­Ø« ');
+					return msg.channel.send('error');
 				}
 			}//by ,$ ReBeL Ø¡ , ðŸ”•#4777 'CODES SERVER'
 
 			return handleVideo(video, msg, voiceChannel);
 		}//by ,$ ReBeL Ø¡ , ðŸ”•#4777 'CODES SERVER'
 	} else if (command === `skip`) {
-		if (!msg.member.voiceChannel) return msg.channel.send('Ø£Ù†Øª Ù„Ø³Øª Ø¨Ø±ÙˆÙ… ØµÙˆØªÙŠ .');
-		if (!serverQueue) return msg.channel.send('Ù„Ø§ ÙŠØªÙˆÙØ± Ù…Ù‚Ø·Ø¹ Ù„ØªØ¬Ø¢ÙˆØ²Ù‡');
-		serverQueue.connection.dispatcher.end('ØªÙ… ØªØ¬Ø¢ÙˆØ² Ù‡Ø°Ø¢ Ø§Ù„Ù…Ù‚Ø·Ø¹');
+		if (!msg.member.voiceChannel) return msg.channel.send('error.');
+		if (!serverQueue) return msg.channel.send('error');
+		serverQueue.connection.dispatcher.end('error');
 		return undefined;
 	} else if (command === `stop`) {//by ,$ ReBeL Ø¡ , ðŸ”•#4777 'CODES SERVER'
-		if (!msg.member.voiceChannel) return msg.channel.send('Ø£Ù†Øª Ù„Ø³Øª Ø¨Ø±ÙˆÙ… ØµÙˆØªÙŠ .');
-		if (!serverQueue) return msg.channel.send('Ù„Ø§ ÙŠØªÙˆÙØ± Ù…Ù‚Ø·Ø¹ Ù„Ø¥ÙŠÙ‚Ø¢ÙÙ‡');
+		if (!msg.member.voiceChannel) return msg.channel.send('error');
+		if (!serverQueue) return msg.channel.send('error');
 		serverQueue.songs = [];
-		serverQueue.connection.dispatcher.end('ØªÙ… Ø¥ÙŠÙ‚Ø¢Ù Ù‡Ø°Ø¢ Ø§Ù„Ù…Ù‚Ø·Ø¹');
+		serverQueue.connection.dispatcher.end('error');
 		return undefined;
 	} else if (command === `vol`) {
-		if (!msg.member.voiceChannel) return msg.channel.send('Ø£Ù†Øª Ù„Ø³Øª Ø¨Ø±ÙˆÙ… ØµÙˆØªÙŠ .');
-		if (!serverQueue) return msg.channel.send('Ù„Ø§ ÙŠÙˆØ¬Ø¯ Ø´ÙŠØ¡ Ø´ØºØ¢Ù„.');
-		if (!args[1]) return msg.channel.send(`:loud_sound: Ù…Ø³ØªÙˆÙ‰ Ø§Ù„ØµÙˆØª **${serverQueue.volume}**`);
+		if (!msg.member.voiceChannel) return msg.channel.send('error');
+		if (!serverQueue) return msg.channel.send('error');
+		if (!args[1]) return msg.channel.send(`:loud_sound: error **${serverQueue.volume}**`);
 		serverQueue.volume = args[1];//by ,$ ReBeL Ø¡ , ðŸ”•#4777 'CODES SERVER'
 		serverQueue.connection.dispatcher.setVolumeLogarithmic(args[1] / 50);
-		return msg.channel.send(`:speaker: ØªÙ… ØªØºÙŠØ± Ø§Ù„ØµÙˆØª Ø§Ù„ÙŠ **${args[1]}**`);
+		return msg.channel.send(`:speaker: error **${args[1]}**`);
 	} else if (command === `np`) {
-		if (!serverQueue) return msg.channel.send('Ù„Ø§ ÙŠÙˆØ¬Ø¯ Ø´ÙŠØ¡ Ø­Ø§Ù„ÙŠ Ù Ø§Ù„Ø¹Ù…Ù„.');
+		if (!serverQueue) return msg.channel.send('error');
 		const embedNP = new Discord.RichEmbed()
-	.setDescription(`:notes: Ø§Ù„Ø§Ù† ÙŠØªÙ… ØªØ´ØºÙŠÙ„ : **${serverQueue.songs[0].title}**`)
+	.setDescription(`:notes: Name Song : **${serverQueue.songs[0].title}**`)
 		return msg.channel.sendEmbed(embedNP);
 	} else if (command === `queue`) {
 		//by ,$ ReBeL Ø¡ , ðŸ”•#4777 'CODES SERVER'
-		if (!serverQueue) return msg.channel.send('Ù„Ø§ ÙŠÙˆØ¬Ø¯ Ø´ÙŠØ¡ Ø­Ø§Ù„ÙŠ Ù Ø§Ù„Ø¹Ù…Ù„.');
+		if (!serverQueue) return msg.channel.send('error');
 		let index = 0;
 		//by ,$ ReBeL Ø¡ , ðŸ”•#4777 'CODES SERVER'
 		const embedqu = new Discord.RichEmbed()
@@ -138,16 +138,16 @@ ${serverQueue.songs.map(song => `**${++index} -** ${song.title}`).join('\n')}
 		if (serverQueue && serverQueue.playing) {
 			serverQueue.playing = false;
 			serverQueue.connection.dispatcher.pause();
-			return msg.channel.send('ØªÙ… Ø¥ÙŠÙ‚Ø§Ù Ø§Ù„Ù…ÙˆØ³ÙŠÙ‚Ù‰ Ù…Ø¤Ù‚ØªØ§!');
+			return msg.channel.send('error');
 		}//by ,$ ReBeL Ø¡ , ðŸ”•#4777 'CODES SERVER'
-		return msg.channel.send('Ù„Ø§ ÙŠÙˆØ¬Ø¯ Ø´ÙŠØ¡ Ø­Ø§Ù„ÙŠ Ù Ø§Ù„Ø¹Ù…Ù„.');
+		return msg.channel.send('error');
 	} else if (command === "resume") {
 		if (serverQueue && !serverQueue.playing) {
 			serverQueue.playing = true;
 			serverQueue.connection.dispatcher.resume();
-			return msg.channel.send('Ø§Ø³ØªØ£Ù†ÙØª Ø§Ù„Ù…ÙˆØ³ÙŠÙ‚Ù‰ Ø¨Ø§Ù„Ù†Ø³Ø¨Ø© Ù„Ùƒ !');
+			return msg.channel.send('error');
 		}//by ,$ ReBeL Ø¡ , ðŸ”•#4777 'CODES SERVER'
-		return msg.channel.send('Ù„Ø§ ÙŠÙˆØ¬Ø¯ Ø´ÙŠØ¡ Ø­Ø§Ù„ÙŠ ÙÙŠ Ø§Ù„Ø¹Ù…Ù„.');
+		return msg.channel.send('error');
 	}
 
 	return undefined;
@@ -183,13 +183,13 @@ async function handleVideo(video, msg, voiceChannel, playlist = false) {
 		} catch (error) {
 			console.error(`I could not join the voice channel: ${error}`);
 			queue.delete(msg.guild.id);
-			return msg.channel.send(`Ù„Ø§ Ø£Ø³ØªØ·ÙŠØ¹ Ø¯Ø®ÙˆÙ„ Ù‡Ø°Ø¢ Ø§Ù„Ø±ÙˆÙ… ${error}`);
+			return msg.channel.send(`errrr or ${error}`);
 		}
 	} else {//by ,$ ReBeL Ø¡ , ðŸ”•#4777 'CODES SERVER'
 		serverQueue.songs.push(song);
 		console.log(serverQueue.songs);
 		if (playlist) return undefined;
-		else return msg.channel.send(` **${song.title}** ØªÙ… Ø§Ø¶Ø§ÙÙ‡ Ø§Ù„Ø§ØºÙ†ÙŠØ© Ø§Ù„ÙŠ Ø§Ù„Ù‚Ø§Ø¦Ù…Ø©!`);
+		else return msg.channel.send(` **${song.title}** error 4 ever`);
 	}
 	return undefined;
 }//by ,$ ReBeL Ø¡ , ðŸ”•#4777 'CODES SERVER'
@@ -214,7 +214,7 @@ function play(guild, song) {
 		.on('error', error => console.error(error));//by ,$ ReBeL Ø¡ , ðŸ”•#4777 'CODES SERVER'
 	dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);//by ,$ ReBeL Ø¡ , ðŸ”•#4777 'CODES SERVER'
 
-	serverQueue.textChannel.send(`Ø¨Ø¯Ø¡ ØªØ´ØºÙŠÙ„ : **${song.title}**`);
+	serverQueue.textChannel.send(`error fe mkan al97y7 : **${song.title}**`);
 }//by ,$ ReBeL Ø¡ , ðŸ”•#4777 'CODES SERVER'
 
 const adminprefix = "$vip";//by ,$ ReBeL Ø¡ , ðŸ”•#4777 'CODES SERVER'
@@ -225,20 +225,20 @@ client.on('message', message => {//by ,$ ReBeL Ø¡ , ðŸ”•#4777 'CODES SER
     
 if (message.content.startsWith(adminprefix + 'setgame')) {//by ,$ ReBeL Ø¡ , ðŸ”•#4777 'CODES SERVER'
   client.user.setGame(argresult);
-    message.channel.sendMessage(`**${argresult} ØªÙ… ØªØºÙŠÙŠØ± Ø¨Ù„Ø§ÙŠÙ†Ù‚ Ø§Ù„Ø¨ÙˆØª Ø¥Ù„Ù‰ **`)
+    message.channel.sendMessage(`**${argresult} error`)
 } else 
   if (message.content.startsWith(adminprefix + 'setname')) {
 client.user.setUsername(argresult).then
-    message.channel.sendMessage(`**${argresult}** : ØªÙ… ØªØºÙŠÙŠØ± Ø£Ø³Ù… Ø§Ù„Ø¨ÙˆØª Ø¥Ù„Ù‰`)
-return message.reply("**Ù„Ø§ ÙŠÙ…ÙƒÙ†Ùƒ ØªØºÙŠÙŠØ± Ø§Ù„Ø§Ø³Ù… ÙŠØ¬Ø¨ Ø¹Ù„ÙŠÙƒ Ø§Ù„Ø§Ù†ØªØ¸Ø¢Ø± Ù„Ù…Ø¯Ø© Ø³Ø§Ø¹ØªÙŠÙ† . **");
+    message.channel.sendMessage(`**${argresult}** : error`)
+return message.reply("00100");
 } else
   if (message.content.startsWith(adminprefix + 'setavatar')) {
 client.user.setAvatar(argresult);
-  message.channel.sendMessage(`**${argresult}** : ØªÙ… ØªØºÙŠØ± ØµÙˆØ±Ø© Ø§Ù„Ø¨ÙˆØª`);
+  message.channel.sendMessage(`**${argresult}** : loooool`);
       } else     
 if (message.content.startsWith(adminprefix + 'setT')) {
   client.user.setGame(argresult, "https://www.twitch.tv/idk");
-    message.channel.sendMessage(`**ØªÙ… ØªØºÙŠÙŠØ± ØªÙˆÙŠØªØ´ Ø§Ù„Ø¨ÙˆØª Ø¥Ù„Ù‰  ${argresult}**`)
+    message.channel.sendMessage(`${argresult}**`)
 }
 
 });
@@ -248,14 +248,14 @@ client.on("message", message => {
   const embed = new Discord.RichEmbed() //by ,$ ReBeL Ø¡ , ðŸ”•#4777 'CODES SERVER'
       .setColor("#000000")//by ,$ ReBeL Ø¡ , ðŸ”•#4777 'CODES SERVER'
       .setDescription(`
-${prefix}play â‡ Ù„ØªØ´ØºÙŠÙ„ Ø£ØºÙ†ÙŠØ© Ø¨Ø±Ø¢Ø¨Ø· Ø£Ùˆ Ø¨Ø£Ø³Ù…
-${prefix}skip â‡ Ù„ØªØ¬Ø¢ÙˆØ² Ø§Ù„Ø£ØºÙ†ÙŠØ© Ø§Ù„Ø­Ø¢Ù„ÙŠØ©
-${prefix}pause â‡ Ø¥ÙŠÙ‚Ø¢Ù Ø§Ù„Ø£ØºÙ†ÙŠØ© Ù…Ø¤Ù‚ØªØ§
-${prefix}resume â‡ Ù„Ù…ÙˆØ¢ØµÙ„Ø© Ø§Ù„Ø¥ØºÙ†ÙŠØ© Ø¨Ø¹Ø¯ Ø¥ÙŠÙ‚Ø¢ÙÙ‡Ø¢ Ù…Ø¤Ù‚ØªØ§
-${prefix}vol â‡ Ù„ØªØºÙŠÙŠØ± Ø¯Ø±Ø¬Ø© Ø§Ù„ØµÙˆØª 100 - 0
-${prefix}stop â‡ Ù„Ø¥Ø®Ø±Ø¢Ø¬ Ø§Ù„Ø¨ÙˆØª Ù…Ù† Ø§Ù„Ø±ÙˆÙ…
-${prefix}np â‡ Ù„Ù…Ø¹Ø±ÙØ© Ø§Ù„Ø£ØºÙ†ÙŠØ© Ø§Ù„Ù…Ø´ØºÙ„Ø© Ø­Ø¢Ù„ÙŠØ§
-${prefix}queue â‡ Ù„Ù…Ø¹Ø±ÙØ© Ù‚Ø¢Ø¦Ù…Ø© Ø§Ù„ØªØ´ØºÙŠÙ„
+${prefix}play none
+${prefix}skip loaowkwkwkwkss is not disbled
+${prefix}pause adad
+${prefix}resume wwtfstfs
+${prefix}vol akkwkwkw  100 - 0
+${prefix}stop momo is enabled
+${prefix}np â‡ nononni
+${prefix}queue loool
 
  `)//by ,$ ReBeL Ø¡ , ðŸ”•#4777 'CODES SERVER'
    message.channel.sendEmbed(embed)//by ,$ ReB
@@ -263,4 +263,4 @@ ${prefix}queue â‡ Ù„Ù…Ø¹Ø±ÙØ© Ù‚Ø¢Ø¦Ù…Ø© Ø§Ù�
    }
    }); 
    
-	client.login("BOT_TOKEN");
+client.login("BOT_TOKEN");
