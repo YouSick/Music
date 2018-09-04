@@ -13,7 +13,7 @@ client.on('ready', function() {
 });
 
       client.on('ready', () => {
-              client.user.setActivity("1play | ❤", {type: 'LISTENING'});
+              client.user.setActivity("1play | Soon", {type: 'LISTENING'});
       
       });
 /*
@@ -81,7 +81,7 @@ message.channel.send(`aded : **( ${videoInfo.title} )** on the list :musical_not
                 fetchVideoInfo(id, function(err, videoInfo) {
                     if (err) throw new Error(err);
 message.channel.send(`Now playing : **( ${videoInfo.title} )** :musical_note: `)
-                    // client.user.setGame(videoInfo.title,'https://www.twitch.tv/Abdulmohsen');
+                    // client.user.setGame(videoInfo.title,'https://www.twitch.tv/idk');
                 });
             });
         }
